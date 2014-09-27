@@ -1,5 +1,5 @@
-define(['config', 'map/mapgenerator', 'player'], function (Config, MapGenerator, Player) {
-	var frames = 1;
+define(['config', 'map/mapgenerator', 'player','bomb'], function (Config, MapGenerator, Player, Bomb) {
+	var frames = 1, b;
 
 	var Bomberman = Class.extend({
 		map: null,
@@ -16,6 +16,8 @@ define(['config', 'map/mapgenerator', 'player'], function (Config, MapGenerator,
 			this.player = new Player(this.sprite, 'white');
 			this.player.setPostion(26, 16);
 			this.player.setDrawMode('bottom');
+
+			b = new Bomb(this.sprite, 26 * 2, 16 * 3);
 		},
 
 		update: function(input) {
@@ -49,11 +51,14 @@ define(['config', 'map/mapgenerator', 'player'], function (Config, MapGenerator,
 			}
 
 			this.player.tick(input);
+			b.tick();
 		},
 
 		draw: function (ctx) {
 			this.map.draw(ctx);
 			this.player.draw(ctx);
+
+			b.draw(ctx);
 		}
 
 	});
