@@ -85,14 +85,12 @@ define(["config", "map/maptile", 'bomb'], function(Config, MapTile, Bomb) {
 		},
 
 		getPosition: function(x, y) {
-			console.log('coords: ' + x + ' ' + y);
 			for (var i = 0; i < this.rows; i++) {
 				for (var j = 0; j < this.cols; j++) {
 					tileRect = this.board[i][j].getRect();
 					if (x >= tileRect.x && x <= tileRect.x + tileRect.w && y >= tileRect.y && y <= tileRect.y + tileRect.h)
 					{
-						console.log('found at: ' + i + ' ' + j);
-						return { x: tileRect.x, y: tileRect.y };
+						return { x: tileRect.x, y: tileRect.y, i: i, j: j };
 					}
 				}
 			}

@@ -38,6 +38,7 @@ define(["config"], function(Config) {
 		speed: null,
 		direction: null,
 		isMoving: null,
+		overBomb: null,
 
 		init: function(image, color) {
 			this.image = image;
@@ -49,6 +50,7 @@ define(["config"], function(Config) {
 			this.speed = 1;
 			this.isMoving = false;
 			this.xd = this.yd = 0;
+			this.overBomb = false;
 		},
 
 		setPostion: function(x, y) {
