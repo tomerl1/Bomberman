@@ -33,19 +33,22 @@ define(["config"], function(Config) {
 		image: null,
 		x: null,
 		y: null,
-		velocity: null,
+		direction: null,
 		frame: null,
 		speed: null,
 		direction: null,
+		isMoving: null,
 
 		init: function(image, color) {
 			this.image = image;
 			this.color = color.toUpperCase();
 			this.spriteData = PlayerDefinitions[this.color];
 			this.currentFrame = 0;
-			this.velocity = 0;
+			this.direction = 0;
 			this.frames = 1;
-			this.speed = 5;
+			this.speed = 1;
+			this.isMoving = false;
+			this.xd = this.yd = 0;
 		},
 
 		setPostion: function(x, y) {
@@ -56,7 +59,7 @@ define(["config"], function(Config) {
 		setDrawMode: function(drawMode) {
 			if (drawMode != null) {
 				drawMode = drawMode.toUpperCase();
-				if (this.direction != drawMode) {
+				if (this.currentMode != this.spriteData.Modes[drawMode]) {
 					this.direction = drawMode;
 					this.currentMode = this.spriteData.Modes[drawMode];
 					this.currentFrame = 1;
@@ -64,16 +67,16 @@ define(["config"], function(Config) {
 			}
 		},
 
-		tick: function(input) {
+		tick: function() {
 			this.frames = ++this.frames % 8;
-			if (this.frames == 0) {
-				if (this.velocity) {
-					this.setPostion(this.x + this.velocity.x, this.y + this.velocity.y);
+			if (this.isMoving) {
+				this.setPostion(this.x + this.direction.x * this.speed, this.y + this.direction.y * this.speed);
+				if (this.frames == 0) {
 					this.currentFrame = ++this.currentFrame % this.currentMode.length;
 				}
-				else {
-					this.currentFrame = 1;
-				}
+			}
+			else {
+				this.currentFrame = 1;
 			}
 		},
 

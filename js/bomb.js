@@ -1,4 +1,4 @@
-define(['config'], function(Config){
+define(['config'], function(Config, Bomb){
 
 	var bombFrames = [
 	{sx: 20, sy: 258, sw: 12, sh: 14}, 
@@ -29,14 +29,12 @@ define(['config'], function(Config){
 					this.currentFrame = ++this.currentFrame % bombFrames.length;
 				}
 			}
-
-			//this.currentFrame = 0;
 		},
 
 		draw: function(ctx) {
 			var data = bombFrames[this.currentFrame], 
-			x = this.x + (Config.constants.MAP_TILE_WIDTH / 2) - ((this.x + data.sw) / 2),
-			y = this.y + (Config.constants.MAP_TILE_HEIGHT / 2) - ((this.y + data.sh) / 2);
+			x = this.x + (Config.constants.MAP_TILE_WIDTH - data.sw) / 2,
+			y = this.y + (Config.constants.MAP_TILE_HEIGHT - data.sh) / 2 - 1;
 
 			ctx.drawImage(this.image,
 				data.sx,

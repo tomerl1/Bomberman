@@ -1,4 +1,4 @@
-define(["config", "map/maptile"], function(Config, MapTile) {
+define(["config", "map/maptile", 'bomb'], function(Config, MapTile, Bomb) {
 	var MapGenerator = Class.extend({
 		rows: null,
 		cols: null,
@@ -6,6 +6,7 @@ define(["config", "map/maptile"], function(Config, MapTile) {
 		height: null,
 		board: null,
 		image: null,
+		bombs: null,
 
 		init: function(image) {
 			this.image = image;
@@ -39,7 +40,7 @@ define(["config", "map/maptile"], function(Config, MapTile) {
 							}
 						}
 						else {
-							if (Math.random() > 0.80) {
+							if (Math.random() > 0.8) {
 								if (i - 1 >= 0 && this.board[i - 1][j].tileType == MapTile.SOLID) {
 									this.board[i][j] = new MapTile(this.image, MapTile.SHADOWED_GRASS, i, j);
 								}
@@ -81,6 +82,22 @@ define(["config", "map/maptile"], function(Config, MapTile) {
 			}
 
 			return false;
+		},
+
+		getPosition: function(x, y) {
+			console.log('coords: ' + x + ' ' + y);
+			for (var i = 0; i < this.rows; i++) {
+				for (var j = 0; j < this.cols; j++) {
+					tileRect = this.board[i][j].getRect();
+					if (x >= tileRect.x && x <= tileRect.x + tileRect.w && y >= tileRect.y && y <= tileRect.y + tileRect.h)
+					{
+						console.log('found at: ' + i + ' ' + j);
+						return { x: tileRect.x, y: tileRect.y };
+					}
+				}
+			}
+
+			return null;
 		}
 	});
 

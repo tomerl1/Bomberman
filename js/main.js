@@ -29,7 +29,7 @@ require(["lib/game", "bomberman"], function (Game, Bomberman) {
             input.bindKey("right", [input.Keys.RIGHT_ARROW, input.Keys.D]);
             input.bindKey("bottom", [input.Keys.DOWN_ARROW, input.Keys.S]);
             input.bindKey("context", [input.Buttons.RIGHT]);
-            // input.bindKey("space", input.Keys.SPACE);
+            input.bindKey("space", input.Keys.SPACE);
 
             this.hasLoaded = false;
         },
@@ -50,8 +50,8 @@ require(["lib/game", "bomberman"], function (Game, Bomberman) {
         }
     });
 
-    (function () {
-        var game = new App();
+(function () {
+    var game = new App();
 
         // run the application
         game.run();
