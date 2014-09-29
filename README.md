@@ -1,4 +1,4 @@
 Bomberman
 =========
 
-Just testing an HTML5 Bomberman clone
+Just making an HTML5 Bomberman clone
