@@ -40,7 +40,7 @@ define(["config", "map/maptile", 'bomb'], function(Config, MapTile, Bomb) {
 							}
 						}
 						else {
-							if (Math.random() > 0.8) {
+							if (Math.random() > 0.5) {
 								if (i - 1 >= 0 && this.board[i - 1][j].tileType == MapTile.SOLID) {
 									this.board[i][j] = new MapTile(this.image, MapTile.SHADOWED_GRASS, i, j);
 								}
@@ -60,6 +60,20 @@ define(["config", "map/maptile", 'bomb'], function(Config, MapTile, Bomb) {
 		draw: function(ctx) {
 			for (var i = 0; i < this.rows; i++) {
 				for (var j = 0; j < this.cols; j++) {
+					if (this.board[i][j].tileType == 'BLOCK' || this.board[i][j].tileType == 'SOLID') {
+						if (i + 1 < this.rows) {
+							if (this.board[i + 1][j].tileType == 'GRASS') {
+								this.board[i + 1][j].tileType = 'SHADOWED_GRASS';
+							}
+						}
+					}
+					else if (this.board[i][j].tileType == 'GRASS' || this.board[i][j].tileType == 'SHADOWED_GRASS') {
+						if (i + 1 < this.rows) {
+							if (this.board[i + 1][j].tileType == 'SHADOWED_GRASS') {
+								this.board[i + 1][j].tileType = 'GRASS';
+							}
+						}
+					}
 					this.board[i][j].draw(ctx);
 				}
 			}

@@ -18,10 +18,52 @@ define(["config"], function(Config) {
 			}
 		},
 		BLACK: {
+			sy:66,
+			w: 16, 
+			h: 24, 
+			Modes: {
+				BOTTOM: [{sx: 53}, {sx: 70}, {sx: 88}, {sx: 70}],
+				LEFT: [{sx: 106}, {sx: 124}, {sx: 143}, {sx: 124}],
+				RIGHT: [{sx: 161}, {sx: 179}, {sx: 197}, {sx: 179}],
+				TOP: [{sx: 219}, {sx: 237}, {sx: 255}, {sx: 237}],
+				KICK_BOTTOM: [],
+				KICK_LEFT: [],
+				KICK_RIGHT: [],
+				KICK_TOP: [],
+				DEATH: [{sx: 344}, {sx: 361}, {sx: 378}, {sx: 395}]
+			}
 		},
 		BLUE: {
+			sy:92,
+			w: 16, 
+			h: 24, 
+			Modes: {
+				BOTTOM: [{sx: 53}, {sx: 70}, {sx: 88}, {sx: 70}],
+				LEFT: [{sx: 106}, {sx: 124}, {sx: 143}, {sx: 124}],
+				RIGHT: [{sx: 161}, {sx: 179}, {sx: 197}, {sx: 179}],
+				TOP: [{sx: 219}, {sx: 237}, {sx: 255}, {sx: 237}],
+				KICK_BOTTOM: [],
+				KICK_LEFT: [],
+				KICK_RIGHT: [],
+				KICK_TOP: [],
+				DEATH: [{sx: 344}, {sx: 361}, {sx: 378}, {sx: 395}]
+			}
 		},
 		RED: {
+			sy:120,
+			w: 16, 
+			h: 24, 
+			Modes: {
+				BOTTOM: [{sx: 53}, {sx: 70}, {sx: 88}, {sx: 70}],
+				LEFT: [{sx: 106}, {sx: 124}, {sx: 143}, {sx: 124}],
+				RIGHT: [{sx: 161}, {sx: 179}, {sx: 197}, {sx: 179}],
+				TOP: [{sx: 219}, {sx: 237}, {sx: 255}, {sx: 237}],
+				KICK_BOTTOM: [],
+				KICK_LEFT: [],
+				KICK_RIGHT: [],
+				KICK_TOP: [],
+				DEATH: [{sx: 344}, {sx: 361}, {sx: 378}, {sx: 395}]
+			}
 		}
 	};
 
@@ -39,6 +81,8 @@ define(["config"], function(Config) {
 		direction: null,
 		isMoving: null,
 		overBomb: null,
+		isAlive: null,
+		bombSize: null,
 
 		init: function(image, color) {
 			this.image = image;
@@ -51,6 +95,8 @@ define(["config"], function(Config) {
 			this.isMoving = false;
 			this.xd = this.yd = 0;
 			this.overBomb = false;
+			this.isAlive = true;
+			this.bombSize = 2;
 		},
 
 		setPostion: function(x, y) {

@@ -54,6 +54,14 @@ define(["config"], function(Config) {
 				w: Config.constants.MAP_TILE_WIDTH,
 				h: Config.constants.MAP_TILE_HEIGHT
 			}
+		},
+
+		isSolid: function() {
+			return this.tileType == 'SOLID';
+		},
+
+		isSoftBlock: function() {
+			return this.tileType == 'BLOCK';
 		}
 	});
 
